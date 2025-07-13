@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>Xchat | Xapp.com</title>
+</head>
+
+<body>
+	<ul id="messages"></ul>
+	<form id="form" action="">
+		<input id="input" autocomplete="off" />
+		<button>Send</button>
+	</form>
+
+	<!-- Сущевтует три разных варианта подлкючения библиотеки socket на стороне клиента для файла index.html -->
+	<!-- 1 - путь к библиотеке в инете (пока что используем этот вариант. Лучше использовать 2 или 3, но пока еще не нашел как сделать, чтобы работало для локального и удаленного сервера одинаково) -->
+	<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+	
+	<!-- 2 - глобалный путь к библиотеке установленной во время команды npm install (не работает на удаленном сервере) -->
+	<!-- <script src="/socket.io/socket.io.js"></script> -->
+	
+	<!-- 3 - путь к библиотеке в папке node_modules -->
+	<!-- <script src="node_modules/socket.io/client-dist/socket.io.js"></script> -->
+
+	<script>
+		// Создаем сокет чата на стороне клиента для файла index.html
+		const socket = io(
+			// 1 параметр - оригинальный адрес сайта на котором запускается чат
+			window.location.origin,
+			
+			// 2 параметр - объект из разных свойств. В нашем случае передаем свойство "path" которое указывает дирекотрию/папку сайта в которой запускается файл index.html
+			// !!! - к дериктории/папке добавляем строку "socket.io" (отсутствие этой строки не позволяло запускать чат на удаленном сервере)
+			{
+				path: window.location.pathname + 'socket.io'
+			}
+		);
+
+		// Создаем константы для работы с формой, полем ввода сообщения, списком сообщений
+		const form = document.getElementById('form');
+		const input = document.getElementById('input');
+		const messages = document.getElementById('messages');
+
+		// Подключаемся к событию отправки форм
+		form.addEventListener('submit', (e) => {
+			// отключаем событие по умолчанию
+			e.preventDefault();
+			// проверяем поле формы
+			if (input.value) {
+				// если поле формы не пустое
+				// отправляем сообщение для события чата под именем "chat_message"(имя может быть любое)
+				socket.emit('chat_message', input.value);
+				// после отправки сообщения чистим поле для нового сообщения
+				input.value = '';
+			}
+		});
+		
+		// подключаемся к событию чата chat_message
+		// для получаения сообщеий от данного события
+		socket.on('chat_message', (msg) => {
+			// создаем элемент списка
+			const item = document.createElement('li');
+			// добавляем сообщение от сокета в элемент списка
+			item.textContent = msg;
+			// добавляем новый элемент списка в список <ul>
+			messages.appendChild(item);
+			// скролим экран к последнему сообщению если <body> больше чем высота экрана
+			window.scrollTo(0, document.body.scrollHeight);
+		});
+
+		// подключаем код сокета для ловли ошибок
+		socket.on("connect_error", (err) => {
+			console.log(err.message);
+			console.log(err.description);
+			console.log(err.context);
+  		});
+		
+	</script>
+</body>
+
+</html>
