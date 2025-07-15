@@ -5,10 +5,13 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<meta charset="utf-8">
 	<title>Xchat | Xapp.com</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">	
+	<link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
+
 	<ul id="messages"></ul>
 	<form id="form" action="">
 		<input id="input" autocomplete="off" />
@@ -18,19 +21,22 @@
 	<!-- Сущевтует три разных варианта подлкючения библиотеки socket на стороне клиента для файла index.html -->
 	<!-- 1 - путь к библиотеке в инете (пока что используем этот вариант. Лучше использовать 2 или 3, но пока еще не нашел как сделать, чтобы работало для локального и удаленного сервера одинаково) -->
 	<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
-	
+
 	<!-- 2 - глобалный путь к библиотеке установленной во время команды npm install (не работает на удаленном сервере) -->
 	<!-- <script src="/socket.io/socket.io.js"></script> -->
-	
+
 	<!-- 3 - путь к библиотеке в папке node_modules -->
 	<!-- <script src="node_modules/socket.io/client-dist/socket.io.js"></script> -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+	<!-- Bootstrap 5 JS Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 	<script>
 		// Создаем сокет чата на стороне клиента для файла index.html
 		const socket = io(
 			// 1 параметр - оригинальный адрес сайта на котором запускается чат
 			window.location.origin,
-			
+
 			// 2 параметр - объект из разных свойств. В нашем случае передаем свойство "path" которое указывает дирекотрию/папку сайта в которой запускается файл index.html
 			// !!! - к дериктории/папке добавляем строку "socket.io" (отсутствие этой строки не позволяло запускать чат на удаленном сервере)
 			{
@@ -56,7 +62,7 @@
 				input.value = '';
 			}
 		});
-		
+
 		// подключаемся к событию чата chat_message
 		// для получаения сообщеий от данного события
 		socket.on('chat_message', (msg) => {
@@ -75,8 +81,8 @@
 			console.log(err.message);
 			console.log(err.description);
 			console.log(err.context);
-  		});
-		
+		});
+
 	</script>
 </body>
 
