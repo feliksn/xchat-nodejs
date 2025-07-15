@@ -12,7 +12,7 @@ const http  = require('node:http');
 const path = require('node:path');
 const express = require('express');
 const { Server } = require('socket.io');
-
+ 
 // создаем приложение express
 const app = express();
 
@@ -29,11 +29,14 @@ const io = new Server(
 	}
 );
 
+app.use('/css', express.static(__dirname + '/css'));
+
 // В этом месте express.js вступает в работу. Вроде что можно обойтись и без него на этом этапе. Но пока что оставим.
 // Работает и хорошо. Не трогаем то, что работает:))) В будущем решим можно ли без него. 
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'index.html'));
 });
+
 
 // Подключаемся к соединению сокета для работы чата
 io.on('connection', (socket) => {
@@ -50,7 +53,9 @@ io.on('connection', (socket) => {
 
 // функция прослушивания порта сайта на котором запущено приложение нода
 server.listen(port, () => {
-	console.log('Server is running on port:' + port)
+	console.log('Server is running on port: ' + port)
+	// добавлено для удобства перехода в браузер
+	console.log("http://localhost:3000")
 });
 
 // код для ловли ошибок на стороне сервера
