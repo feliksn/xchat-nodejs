@@ -1,5 +1,40 @@
-.container {
-    background-color: bisque;
+h1,
+h2,
+h3,
+h4,
+h5,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    background-image: linear-gradient(#2E9AFF, #F498AD);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header-section{
+    height: 80px;
+    border-bottom: 1px solid #fff;
+    padding-top: 20px;
+}
+
+.section {
+    background-color: rgba(8, 50, 113, 0.5);
+    margin: 1rem;
+    border-radius: 16px;
+}
+
+.accounts > div {
+    cursor: pointer;
+}
+
+.active-account {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 0rem;
 }
 
 #messages {
@@ -14,21 +49,51 @@
 
 .message {
     max-width: 50%;
+    min-width: 150px;
     width: fit-content;
     padding: 1rem;
     margin: 1rem;
     word-break: break-all;
+    color: #fff;
 }
 
 .message-my {
     margin-left: auto;
-    background-color: #fff;
-    border: 1px solid red;
+    background-color: RGB(25, 135, 84);
     border-radius: 32px 32px 0px 32px;
 }
 
 .message-buddy {
-    background-color: gainsboro;
-    border: 1px solid blue;
+    background-color: #0463F0;
     border-radius: 32px 32px 32px 0px;
+}
+
+#input,
+#btn-input{
+    background-color: rgba(5, 12, 22, 0.5) !important;
+    border: none !important;
+}
+
+#input-search,
+#btn-search
+{
+    background-color:rgba(255, 255, 255, 0.3) !important;
+    border: none !important;
+}
+
+i{
+    color: #fff;
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #bbbbbb;
+    opacity: 1; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #bbbbbb;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+    color: #bbbbbb;
 }
