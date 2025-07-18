@@ -16,20 +16,90 @@ body {
     background-size: cover;
 }
 
-.header-section{
-    height: 80px;
-    border-bottom: 1px solid #fff;
-    padding-top: 20px;
-}
-
-.section {
+.section-left,
+.section-right {
     background-color: rgba(8, 50, 113, 0.5);
     margin: 1rem;
     border-radius: 16px;
 }
 
-.accounts > div {
+.section-right-hide,
+.section-left-hide{
+    display: none;
+}
+
+.section-right-show,
+.section-left-show{
+    display: block;
+}
+
+.section-left{
+    width:30%
+}
+
+.section-right{
+    width:70%
+}
+
+@media (max-width: 992px) {
+
+    .section-left{
+        width:40%
+    }
+    
+    .section-right{
+        width:60%
+    }
+}
+
+@media (max-width: 768px) {
+
+    .section-left,
+    .section-right{
+        width:70%
+    }
+
+}
+
+.section-left-header{
+    height: 80px;
+    border-bottom: 1px solid #fff;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.section-right-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    border-bottom: 1px solid #fff;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.section-accounts{
+    height: 520px;
+    overflow-x: none;
+    overflow-y: auto;
+}
+
+.section-header-right-account{
+    display: flex;
+    align-items: center;
+}
+
+.section-right-account > div{
+    margin: 0;
+}
+
+.account{
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+    border-radius: 16px 16px 16px 16px;
 }
 
 .active-account {
@@ -37,14 +107,21 @@ body {
     padding: 0.5rem 0rem;
 }
 
-#messages {
+.messages-section {
     height: 450px;
     overflow-x: none;
     overflow-y: auto;
 }
 
-#messages::-webkit-scrollbar {
+.messages-section::-webkit-scrollbar,
+.section-accounts::-webkit-scrollbar{
     width: 0;
+}
+
+.form-section{
+    height: 70px;
+    border-top: 2px solid #fff;
+    padding:1rem;
 }
 
 .message {
@@ -71,14 +148,18 @@ body {
 #input,
 #btn-input{
     background-color: rgba(5, 12, 22, 0.5) !important;
+    color: #fff !important;
     border: none !important;
+    caret-color: #fff;
 }
 
 #input-search,
 #btn-search
 {
     background-color:rgba(255, 255, 255, 0.3) !important;
+    color: #fff !important;
     border: none !important;
+    caret-color: #fff;
 }
 
 i{
@@ -97,3 +178,4 @@ i{
 .form-control::-ms-input-placeholder { /* Microsoft Edge */
     color: #bbbbbb;
 }
+

@@ -12,123 +12,94 @@
 
 <body>
 
-	<div class="container">
+	<div class="container d-flex justify-content-center">
 
-		<div class="row">
-
-			<!--Левая секция (блок поиска контактов, перечень контактов)-->
-			<div class="col-3 section">
+		<!--Левая секция (блок поиска контактов, перечень контактов)-->
+		<div class="section-left section-left-show">
 			<!--Шапка левой секции (форма поиска контактов в перечне)-->
-				<div class="header-section">
-					<form class="messege-form d-flex align-items-center">
-						<div class="flex-grow-1 me-2">
-							<input autocomplete="off" type="text" class="form-control"
-								placeholder="Search conversations..." id="input-search" />
-						</div>
-						<button class="btn" id="btn-search">
-							<i class="bi bi-search"></i>
-						</button>
-					</form>
-
-				</div>
+			<div class="section-left-header">
+				<form class="d-flex align-items-center">
+					<div class="flex-grow-1 me-2">
+						<input autocomplete="off" type="text" class="form-control" placeholder="Search conversations..."
+							id="input-search" />
+					</div>
+					<button class="btn" id="btn-search">
+						<i class="bi bi-search"></i>
+					</button>
+				</form>
+			</div>
 			<!--Поле аккаунтов людей-->
-				<div class="accounts">
+			<div class="section-accounts"></div>
+		</div>
 
-					<div class="active-account rounded m-2 d-flex m-2 align-items-center">
-						<div>
-							<img src="./img/profile.png" class="rounded-circle mx-2" width="40" alt="...">
-						</div>
-						<div>
-							<h5 class="text-light">Zidane</h5>
-							<small class="text-success"><b>Online</b></small>
-						</div>
-					</div>
-
-					<div class="rounded m-2 d-flex m-2 align-items-center">
-						<div>
-							<img src="./img/profile.png" class="rounded-circle mx-2" width="40" alt="...">
-						</div>
-
-						<div>
-							<h5 class="text-light">Ronaldo</h5>
-							<small class="text-warning"><b>Offline</b></small>
-						</div>
-					</div>
-
-				</div>
-			</div>
-
-
-
-			<!--Правая секция (блок заголовка контакта, блок сообщений, инпут отправки сообщения)-->
-			<div class="col-8 section">
+		<!--Правая секция (блок заголовка контакта, блок сообщений, инпут отправки сообщения)-->
+		<div class="section-right section-right-hide">
 			<!--Шапка правой секции (заголовок выбранного контакта из левой секции, кнопкм видеозвонка, звонка, настроек)-->
-				<div class="header-section">
-					<div class="d-flex justify-content-between">
-						<div class="d-flex align-items-center">
-							<div>
-								<img src="./img/profile.png" class="rounded-circle mx-2" width="40" alt="...">
-							</div>
-							<div>
-								<h5 class="text-light">Zidane</h5>
-								<small class="text-light">2 Messages</small>
-							</div>
-						</div>
-						<!--Кнопки Видеовызов, вызов, настройки (возможно чтото еще)-->
-						<div class="btn-call">
+			<div class="section-right-header">
 
-							<button class="btn">
-								<i class="bi bi-camera-video"></i>
-							</button>
-
-							<button class="btn">
-								<i class="bi bi-telephone"></i>
-							</button>
-
-							<button class="btn">
-								<i class="bi bi-three-dots-vertical"></i>
-							</button>
-
-						</div>
-					</div>
-				</div>
-				<!--Поле сообщений-->
-				<div id="messages">
-
-					<!-- Пример полученного сообщения -->
-
-					<div class="message message-buddy">
-						<div>Привет! Как твои дела???</div>
-						<small>10:30</small>
-					</div>
-
-					<!-- Пример отправленного сообщения -->
-
-					<div class="message message-my">
-						<div>Привет! Всё отлично, спасибо!</div>
-						<small>10:32</small>
-					</div>
-
-				</div>
-				<!--Форма для отправки сообщения (инпут для месседжа)-->
-				<div class="messege-form border-top border-light border-2 p-3">
-					<form class="messege-form d-flex align-items-center" id="form" action="">
-						<div class="flex-grow-1 me-2">
-							<input autocomplete="off" type="text" class="form-control" placeholder="Write a message..."
-								id="input" />
-						</div>
-						<button class="btn" id="btn-input">
-							<i class="bi bi-send"></i>
+					<div class="d-flex">
+						<!--Кнопка для выхода из правой секции-->
+						<button class="btn btn-exit-rigth-section">
+							<i class="bi bi-arrow-left"></i>
 						</button>
-					</form>
-				</div>
+						<!--Аккаунт с кем ведешь беседу-->
+						<div class="section-header-right-account"></div>
+					</div>
+					
+					<!--Кнопки Видеовызов, вызов, настройки (возможно чтото еще)-->
+					<div>
+
+						<button class="btn">
+							<i class="bi bi-camera-video"></i>
+						</button>
+
+						<button class="btn">
+							<i class="bi bi-telephone"></i>
+						</button>
+
+						<button class="btn">
+							<i class="bi bi-three-dots-vertical"></i>
+						</button>
+
+					</div>
+
 			</div>
 
+			<!--Поле сообщений-->
+			<div id="messages" class="messages-section">
+
+				<!-- Пример полученного сообщения -->
+
+				<div class="message message-buddy">
+					<div>Привет! Как твои дела???</div>
+					<small>10:30</small>
+				</div>
+
+				<!-- Пример отправленного сообщения -->
+
+				<div class="message message-my">
+					<div>Привет! Всё отлично, спасибо!</div>
+					<small>10:32</small>
+				</div>
+
+			</div>
+			<!--Форма для отправки сообщения (инпут для месседжа)-->
+			<div class="form-section">
+				<form class="d-flex align-items-center" id="form" action="">
+					<div class="flex-grow-1 me-2">
+						<input autocomplete="off" type="text" class="form-control" placeholder="Write a message..."
+							id="input" />
+					</div>
+					<button class="btn" id="btn-input">
+						<i class="bi bi-send"></i>
+					</button>
+				</form>
+			</div>
 		</div>
 
 	</div>
 
-
+	<script src="./js/script.js"></script>
 	<!-- Сущевтует три разных варианта подлкючения библиотеки socket на стороне клиента для файла index.html -->
 	<!-- 1 - путь к библиотеке в инете (пока что используем этот вариант. Лучше использовать 2 или 3, но пока еще не нашел как сделать, чтобы работало для локального и удаленного сервера одинаково) -->
 	<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>

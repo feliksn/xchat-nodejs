@@ -31,6 +31,7 @@ const io = new Server(
 
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/img', express.static(__dirname + '/img'));
+app.use('/js', express.static(__dirname + '/js'));
 
 // В этом месте express.js вступает в работу. Вроде что можно обойтись и без него на этом этапе. Но пока что оставим.
 // Работает и хорошо. Не трогаем то, что работает:))) В будущем решим можно ли без него. 
