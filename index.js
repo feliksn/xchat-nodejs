@@ -7,6 +7,18 @@ const port = process.env.PORT || 3000;
 // Если не существует переменной в среде нод тогда в константу запишеться пустая строка
 const socketPath =  process.env.SOCKET_PATH || '';
 
+// Переменные в среде nodejs для подключения к базе данных (У каждого программера могут быть разные имена пользователей, пароли и название базы данных. Для этого нужне будет внешний файл настроек .env, который будет у каждого с своими данными)
+// Чтобы подключить приложение к базе нужно создать в корне проекта файл .env
+// В созданный файл внести следующие данные:
+// DB_HOST='your host name' ||  по умолнчанию "localhost"
+// DB_USER='user name'
+// DB_PASS='your password'
+// DB_NAME='your database name'
+const dbHost = process.env.DB_HOST || 'localhost';
+const dbUser = process.env.DB_USER
+const dbPass = process.env.DB_PASS 
+const dbName = process.env.DB_NAME;
+
 // подключаем разные библиотеки/модули для работы чата (доп. библиотеки/модули - express, socket, внутр. библиотеки/модули нод - http, path)
 const http  = require('node:http');
 const path = require('node:path');
