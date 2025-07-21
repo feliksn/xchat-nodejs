@@ -108,7 +108,7 @@ server.listen(port, () => {
 
 // код для ловли ошибок на стороне сервера
 io.engine.on("connection_error", (err) => {
-  console.log(err.code);     
-  console.log(err.message);
-  console.log(err.context); 
+	console.log(err.code);     
+	console.log(err.message);
+	console.log(err.context); 
 });
