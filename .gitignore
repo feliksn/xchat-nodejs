@@ -6,3 +6,6 @@
 
 # package-lock file
 package-lock.json
+
+# node .env file
+.env
