@@ -12,6 +12,16 @@ const http  = require('node:http');
 const path = require('node:path');
 const express = require('express');
 const { Server } = require('socket.io');
+// модуль для работы с базой данных
+const mysql = require('mysql2')
+// создаем коснтанту подлкючения к базе данных с передачей параметров подключения к базе данных
+// параметры для базы данных берем из констант с данными покдлючения
+const db = mysql.createConnection({
+	host: dbHost,
+	user: dbUser,
+	password: dbPass,
+	database: dbName
+});
 
 // создаем приложение express
 const app = express();
