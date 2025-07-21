@@ -14,14 +14,8 @@
 		<button>Send</button>
 	</form>
 
-	<!-- Сущевтует три разных варианта подлкючения библиотеки socket на стороне клиента для файла index.html -->
-	<!-- 1 - путь к библиотеке в инете (пока что используем этот вариант. Лучше использовать 2 или 3, но пока еще не нашел как сделать, чтобы работало для локального и удаленного сервера одинаково) -->
 	<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
-	
-	<!-- 2 - глобалный путь к библиотеке установленной во время команды npm install (не работает на удаленном сервере) -->
 	<!-- <script src="/socket.io/socket.io.js"></script> -->
-	
-	<!-- 3 - путь к библиотеке в папке node_modules -->
 	<!-- <script src="node_modules/socket.io/client-dist/socket.io.js"></script> -->
 
 	<script>
@@ -69,7 +63,6 @@
 			window.scrollTo(0, document.body.scrollHeight);
 		});
 
-		// подключаем код сокета для ловли ошибок
 		socket.on("connect_error", (err) => {
 			console.log(err.message);
 			console.log(err.description);
