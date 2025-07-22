@@ -51,6 +51,7 @@ io.on('connection', (socket) => {
 // функция прослушивания порта сайта на котором запущено приложение нода
 server.listen(port, () => {
 	console.log('Server is running on port:' + port)
+	console.log('http://localhost:' + port)
 });
 
 // код для ловли ошибок на стороне сервера
