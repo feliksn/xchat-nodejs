@@ -29,11 +29,16 @@ const io = new Server(
 	}
 );
 
+app.use('/img', express.static(__dirname + '/img'));
+
 // В этом месте express.js вступает в работу. Вроде что можно обойтись и без него на этом этапе. Но пока что оставим.
 // Работает и хорошо. Не трогаем то, что работает:))) В будущем решим можно ли без него. 
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+// массив подключений, чтобы отражалось кто онлайн кто оффлайн кто вышел кто зашел
+connections = []
 
 // Подключаемся к соединению сокета для работы чата
 io.on('connection', (socket) => {
@@ -46,8 +51,14 @@ io.on('connection', (socket) => {
 		// как только получаем какое-либо сообщение от какого-либо пользователя то высылаем это сообщение для всех остальных пользователей, ну и для того кто отправил 
 		io.emit('chat_message', msg);
 	});
+	// при выходе из чата удаляем соединение и будем отображать кто онлайн кто оффлайн
+	socket.on('disconnect', (data) => {
+		console.log(connections)
+		connections.splice(connections.indexOf(socket), 1)
+		console.log("User disconnect!")
+	})
 });
-
+ 
 // функция прослушивания порта сайта на котором запущено приложение нода
 server.listen(port, () => {
 	console.log('Server is running on port:' + port)
