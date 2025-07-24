@@ -88,7 +88,7 @@ io.on('connection', (socket) => {
 		// последние два значения должны быть понятны. Без комментариев)))
 		const sqlInsertNewMessageValues = [1, 1, msg, dt_created];
 		// исполняем запрос и передаем в базу данных значения записанные в константе
-		db.execute(sqlInsertNewMessage, sqlInsertNewMessageValues, (err) => {
+		db.execute(sqlInsertNewMessage, sqlInsertNewMessageValues, (err, result, fields) => {
 			if (err instanceof Error) {
 				// если словим ошибку то увидим в консоли
 				console.log(err);
