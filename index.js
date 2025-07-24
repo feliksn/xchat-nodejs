@@ -1,5 +1,5 @@
-const port = process.env.PORT || 3000;
-const socketPath =  process.env.SOCKET_PATH || '';
+const PORT = process.env.PORT || 3000;
+const SOCKET_PATH =  process.env.SOCKET_PATH || '';
 
 // Переменные в среде nodejs для подключения к базе данных (У каждого программера могут быть разные имена пользователей, пароли и название базы данных. Для этого нужне будет внешний файл настроек .env, который будет у каждого с своими данными)
 // Чтобы подключить приложение к базе нужно создать в корне проекта файл .env
@@ -40,7 +40,7 @@ const io = new Server(
 	server,
 	// доп. настройки сокет сервера в данном случае путь где находится наше приложение нод относительно адреса сайта 
 	{
-		path: socketPath,
+		path: SOCKET_PATH,
 	}
 );
 
@@ -105,8 +105,8 @@ io.on('connection', (socket) => {
 });
 
 // функция прослушивания порта сайта на котором запущено приложение нода
-server.listen(port, () => {
-	console.log('Server is running on port:' + port)
+server.listen(PORT, () => {
+	console.log('Server is running on port:' + PORT)
 });
 
 // код для ловли ошибок на стороне сервера
