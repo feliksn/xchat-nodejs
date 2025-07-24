@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "node --env-file=.env build.js",
     "dev": "node --watch --env-file=.env index.js"
   },
   "repository": {
