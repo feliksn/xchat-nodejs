@@ -78,17 +78,17 @@ io.on('connection', (socket) => {
 		const mm = date.getMinutes();
 		const ss = date.getSeconds();
 		// записываем данные даты и времени в строку в определенном формате для записи в базе данных
-		const created = `${year}-${month}-${day} ${hh}:${mm}:${ss}`;
+		const dt_created = `${year}-${month}-${day} ${hh}:${mm}:${ss}`;
 		// пример передачи значений в базу данных, который будет ниже, взят с:
 		// https://sidorares.github.io/node-mysql2/docs/examples/queries/prepared-statements/insert
 		// записываем в константу запрос в базу данных в виде строки
-		const sql = 'INSERT INTO `messages`(`user_id`, `room_id`, `content`, `created`) VALUES (?, ?, ?, ?)';
+		const sqlInsertNewMessage = 'INSERT INTO `messages`(`user_id`, `room_id`, `content`, `dt_created`) VALUES (?, ?, ?, ?)';
 		// записываем значения передаваемые в базу в видем массива
 		// первые два значения это user_id, room_id - пока что вставленны простые числа без привязки к реальным пользователям и комнатам чтобы проверить как работает запрос. Не можем оставить эти значения в стороне, т.к. без них вылетает ошибка и не можем подключиться к базе данных чтобы вносить изменения
 		// последние два значения должны быть понятны. Без комментариев)))
-		const values = [1, 1, msg, created];
+		const sqlInsertNewMessageValues = [1, 1, msg, dt_created];
 		// исполняем запрос и передаем в базу данных значения записанные в константе
-		db.execute(sql, values, (err, result, fields) => {
+		db.execute(sqlInsertNewMessage, sqlInsertNewMessageValues, (err) => {
 			if (err instanceof Error) {
 				// если словим ошибку то увидим в консоли
 				console.log(err);
