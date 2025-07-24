@@ -323,20 +323,8 @@
 		// подключаемся к событию чата chat_message
 		// для получаения сообщеий от данного события
 		socket.on('chat_message', (msg) => {
-			// создаем элемент списка
-			const item = document.createElement('div');
-			// присваиваем классы диву
-			item.className = "alert alert-dark my-message";
-			//время сообщения
-			const now = new Date();
-			const timeString = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
-			// добавляем сообщение от сокета в элемент списка
-			item.innerHTML = `
-				<div class="text-break lh-sm">${msg}</div>
-				<div class="font-monospace text-end small">${timeString}</div>	
-			`;
-			// добавляем новый элемент
-			messages.appendChild(item);
+			// при получении сообщения от сервера добавляем сообщения к другим сообщениям в чате используя шаблон сообщения
+			messages.innerHTML += getMsgHtml(msg, "12:00");			
 			// скролим экран к последнему сообщению (пока что показатель 100000)
 			messages.scrollTo(0, 100000);
 		});
