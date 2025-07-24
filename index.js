@@ -4,28 +4,30 @@ const SOCKET_PATH =  process.env.SOCKET_PATH || '';
 // Переменные в среде nodejs для подключения к базе данных (У каждого программера могут быть разные имена пользователей, пароли и название базы данных. Для этого нужне будет внешний файл настроек .env, который будет у каждого с своими данными)
 // Чтобы подключить приложение к базе нужно создать в корне проекта файл .env
 // В созданный файл внести следующие данные:
-// DB_HOST='your host name' ||  по умолнчанию "localhost"
+// DB_HOST='your host name'
 // DB_USER='user name'
 // DB_PASS='your password'
 // DB_NAME='your database name'
-const dbHost = process.env.DB_HOST || 'localhost';
-const dbUser = process.env.DB_USER
-const dbPass = process.env.DB_PASS 
-const dbName = process.env.DB_NAME;
+const DB_HOST = process.env.DB_HOST;
+const DB_USER = process.env.DB_USER;
+const DB_PASS = process.env.DB_PASS; 
+const DB_NAME = process.env.DB_NAME;
 
 const http  = require('node:http');
 const path = require('node:path');
 const express = require('express');
 const { Server } = require('socket.io');
+
 // модуль для работы с базой данных
-const mysql = require('mysql2')
+const mysql = require('mysql2');
+
 // создаем коснтанту подлкючения к базе данных с передачей параметров подключения к базе данных
 // параметры для базы данных берем из констант с данными покдлючения
 const db = mysql.createConnection({
-	host: dbHost,
-	user: dbUser,
-	password: dbPass,
-	database: dbName
+	host: DB_HOST,
+	user: DB_USER,
+	password: DB_PASS,
+	database: DB_NAME
 });
 
 // создаем приложение express
