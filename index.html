@@ -40,6 +40,7 @@
 		min-width: 25%;
 		max-width: 75%;
 	}
+
 </style>
 
 <body>
@@ -98,7 +99,7 @@
 				</div>
 			</div>
 
-			<div class="section-right col-sm-7 col-md-8 p-0 border-start border-secondary">
+			<div class="section-right d-none d-sm-block col-sm-7 col-md-8 p-0 border-start border-secondary">
 				<!--header правой секции-->
 				<div class="border-bottom border-secondary d-flex align-items-center justify-content-between">
 					<!--див показывает где человек с которым общаешься-->
@@ -219,20 +220,6 @@
 				section_left.style.display = "block";
 			})
 
-			// условие при стартовой загрузке странице сразу проверка
-			if (window.innerWidth < 576) section_right.style.display = "none";
-
-			//при изменении размера экрана срабатывает функция
-			window.addEventListener('resize', function () {
-				if (window.innerWidth < 576) {
-					section_right.style.display = "none";
-					section_left.style.display = "block";
-				} else {
-					section_right.style.display = "block";
-					section_left.style.display = "block";
-				}
-			})
-
 			// click on account left section
 			let last_clicked_account = null;
 			if (accounts_sections !== null) {
@@ -270,7 +257,6 @@
 					input.focus();
 				})
 			});
-
 
 		})
 	</script>
