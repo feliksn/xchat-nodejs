@@ -288,8 +288,8 @@
 	<script>
 		// Создаем функцию получения шаблона сообщения, которую можно вызывать в разных местах программы
 		function getMsgHtml(content, time, isYours=false){
-			const wrapClass = isYours ? "alert-dark my-message" : "alert-info";
-			return `<div class="w-50 alert ${wrapClass}">
+			const wrapClass = isYours ? "alert-info" : "alert-dark my-message";
+			return `<div class="alert ${wrapClass}">
 						<div class="text-break lh-sm">${content}</div>
 						<div class="font-monospace text-end small">${time}</div>
 					</div>`
