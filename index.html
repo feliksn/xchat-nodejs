@@ -46,9 +46,9 @@
 <body>
 
 	<div class="container mt-3">
-		<div class="row border border-secondary rounded bg-info bg-opacity-25">
+		<div class="row rounded bg-info bg-opacity-25">
 
-			<div class="section-left col-sm-5 col-md-4 pb-2">
+			<div class="section-left d-sm-block col-sm-5 col-md-4 pb-2">
 
 				<!--здесь информация про User-->
 				<div class="d-flex gap-3 my-2">
@@ -213,8 +213,8 @@
 
 			// кнопка скрывающая правую секцию и показывающая левую (появляется кнопка только после того когда экран < 576)
 			BTN_SECTION_RIGHT_NONE.addEventListener('click', function () {
-				section_right.style.display = "none";
-				section_left.style.display = "block";
+				section_right.classList.add('d-none');
+				section_left.classList.remove('d-none');
 			})
 
 			// click on account left section
@@ -222,7 +222,6 @@
 			if (accounts_sections !== null) {
 				accounts_sections.addEventListener('click', function (event) {
 					const account = event.target.closest('.account');
-					console.log(account)
 					document.querySelector('.active-account').innerHTML = account.innerHTML;
 					if (last_clicked_account) {
 						last_clicked_account.classList.remove('active')
@@ -230,11 +229,9 @@
 					account.classList.add('active');
 					last_clicked_account = event.target.closest('.account');
 					if (window.innerWidth < 576) {
-						section_left.style.display = "none";
-						section_right.style.display = "block";
-						return
+						section_left.classList.add('d-none');
+						section_right.classList.remove('d-none');
 					}
-					section_right.style.display = "block";
 				})
 			}
 
