@@ -11,17 +11,6 @@
 		integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
 </head>
 <style>
-	body {
-		background-color: #d8dbe2;
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-size: cover;
-		background-image:
-			repeating-radial-gradient(circle at 0 100%, rgba(27, 27, 30, 0.1), rgba(88, 164, 176, 0.15) 1px, rgba(216, 219, 226, 0.2) 2px, rgba(88, 164, 176, 0.15) 3px, rgba(27, 27, 30, 0.1) 4px),
-			radial-gradient(circle at 0 100%, #1b1b1e, #373f51, #58a4b0, #a9bcd0, #d8dbe2);
-	}
-
 	.accounts::-webkit-scrollbar {
 		width: 0;
 	}
@@ -29,10 +18,6 @@
 	.list-group-item,
 	.emoji-window {
 		cursor: pointer;
-	}
-
-	.my-message {
-		margin-left: auto;
 	}
 
 	.alert {
@@ -43,19 +28,19 @@
 
 </style>
 
-<body>
+<body class="bg-secondary">
 
-	<div class="container mt-3">
-		<div class="row rounded bg-info bg-opacity-25">
+	<div class="container">
+		<div class="row vh-100 bg-primary bg-opacity-25">
 
-			<div class="section-left d-sm-block col-sm-5 col-md-4 pb-2">
+			<div class="section-left d-flex flex-column d-sm-flex col-sm-5 col-md-4 pb-2">
 
 				<!--здесь информация про User-->
 				<div class="d-flex gap-3 my-2">
 					<img src="./img/profile.png"
 						class="float-start rounded-circle border border-4 border-primary"
-						style="width: 60px"
-						alt="...">
+						style="width: 3rem;"
+						alt="..."/>
 					<div>
 						<h5 class="m-0">Victor Strend</h5>
 						<small>I'll be back</small>
@@ -74,11 +59,11 @@
 				</div>
 
 				<!--div где находятся аккаунты -->
-				<div class="overflow-auto list-group gap-1 accounts" style="height: 300px;">
+				<div class="overflow-auto flex-fill list-group gap-1 accounts" style="height: 25vh;">
 					<div class="d-flex gap-3 list-group-item list-group-item-action account">
 						<img src="./img/profile.png"
 							class="float-start rounded-circle border border-4 border-danger"
-							style="width: 60px; height: 60px;"
+							style="width: 3rem;"
 							alt="...">
 						<div>
 							<h5 class="m-0">Morgan</h5>
@@ -89,7 +74,7 @@
 					<div class="d-flex gap-3 list-group-item list-group-item-action account">
 						<img src="./img/profile.png"
 							class="float-start rounded-circle border border-4 border-success"
-							style="width: 60px; height: 60px;"
+							style="width: 3rem;"
 							alt="...">
 						<div>
 							<h5 class="m-0">Daril Dixon</h5>
@@ -99,9 +84,9 @@
 				</div>
 			</div>
 
-			<div class="section-right d-none d-sm-block col-sm-7 col-md-8 p-0 border-start border-secondary">
+			<div class="section-right d-flex flex-column d-none d-sm-flex col-sm-7 col-md-8 p-0">
 				<!--header правой секции-->
-				<div class="border-bottom border-secondary d-flex align-items-center justify-content-between">
+				<div class="d-flex align-items-center justify-content-between">
 					<!--див показывает где человек с которым общаешься-->
 					<div class="d-flex d-flex align-items-center ps-2">
 						<!--кнопка выход из секции чата и переход в список акаунтов-->
@@ -113,7 +98,7 @@
 						<div class="d-flex gap-3 my-2 ps-2 active-account">
 							<img src="./img/profile.png"
 								class="float-start rounded-circle border border-4 border-secondary"
-								style="width: 60px"
+								style="width: 3rem;"
 								alt="...">
 							<div>
 								<h4 class="m-0"></h4>
@@ -133,11 +118,11 @@
 				</div>
 
 				<!--поле смс-->
-				<div class="p-2 overflow-auto" style="height: 300px;" id="messages"></div>
+				<div class="overflow-auto flex-fill" style="height: 25vh;" id="messages"></div>
 
 				<!--див отправки сообщений-->
-				<div class="border-top border-secondary p-2">
-					<form class="d-flex gap-1 my-2 pe-2" action="" id="form">
+				<div class="mt-auto">
+					<form class="d-flex gap-1 my-2 px-2" action="" id="form">
 						<!-- прикрепить документ -->
 						<button class="btn btn-light">
 							<i class="bi bi-paperclip"></i>
@@ -175,7 +160,6 @@
 						</div>
 						<button class="btn btn-primary">Send</button>
 					</form>
-
 				</div>
 
 			</div>
@@ -268,7 +252,7 @@
 	<script>
 		// Создаем функцию получения шаблона сообщения, которую можно вызывать в разных местах программы
 		function getMsgHtml(content, time, isYours=false){
-			const wrapClass = isYours ? "alert-info" : "alert-dark my-message";
+			const wrapClass = isYours ? "alert-info" : "alert-dark ms-auto";
 			return `<div class="alert ${wrapClass}">
 						<div class="text-break lh-sm">${content}</div>
 						<div class="font-monospace text-end small">${time}</div>
