@@ -15,7 +15,7 @@
 		width: 0;
 	}
 
-	.list-group-item,
+	.account,
 	.emoji-window {
 		cursor: pointer;
 	}
@@ -25,80 +25,72 @@
 		min-width: 25%;
 		max-width: 75%;
 	}
-
 </style>
 
-<body class="bg-secondary">
+<body class="bg-dark bg-opacity-75">
 
 	<div class="container">
-		<div class="row vh-100 bg-primary bg-opacity-25">
+		<div class="row vh-100">
 
-			<div class="section-left d-flex flex-column d-sm-flex col-sm-5 col-md-4 pb-2">
+			<div class="section-left d-flex flex-column d-sm-flex col-sm-5 col-md-4 px-2">
 
-				<!--здесь информация про User-->
-				<div class="d-flex gap-3 my-2">
-					<img src="./img/profile.png"
-						class="float-start rounded-circle border border-4 border-primary"
-						style="width: 3rem;"
-						alt="..."/>
-					<div>
-						<h5 class="m-0">Victor Strend</h5>
-						<small>I'll be back</small>
+				<!--header левой секции (название чата)-->
+				<div class="d-flex align-items-center justify-content-center" style="height: 64px;">
+					<div class="text-white">
+						<i class="bi bi-twitter-x">chat</i>
 					</div>
-				</div>
-
-				<!--поиск в списке ниже аккаунты-->
-				<div class="d-flex gap-1 my-3">
-					<input class="form-control" type="text" placeholder="Search" />
-					<button type="button"
-							class="btn btn-light"
-							data-bs-toggle="modal"
-							data-bs-target="#exampleModal">
-						<i class="bi bi-person-plus-fill"></i>
-					</button>
 				</div>
 
 				<!--div где находятся аккаунты -->
-				<div class="overflow-auto flex-fill list-group gap-1 accounts" style="height: 25vh;">
-					<div class="d-flex gap-3 list-group-item list-group-item-action account">
-						<img src="./img/profile.png"
-							class="float-start rounded-circle border border-4 border-danger"
-							style="width: 3rem;"
-							alt="...">
+				<div class="overflow-auto flex-fill accounts gap-3 text-white" style="height: 25vh;">
+
+					<div class="d-flex gap-3 bg-dark bg-opacity-50 p-2 my-1 rounded account">
+						<img src="./img/profile.png" class="float-start rounded-circle border border-4 border-white"
+							style="width: 3rem; height: auto;" alt="...">
 						<div>
 							<h5 class="m-0">Morgan</h5>
-							<small>black man</small>
 						</div>
 					</div>
 
-					<div class="d-flex gap-3 list-group-item list-group-item-action account">
-						<img src="./img/profile.png"
-							class="float-start rounded-circle border border-4 border-success"
-							style="width: 3rem;"
-							alt="...">
+					<div class="d-flex gap-3 bg-dark bg-opacity-50 p-2 my-1 rounded account">
+						<img src="./img/profile.png" class="float-start rounded-circle border border-4 border-dark"
+							style="width: 3rem;  height: 3rem;" alt="...">
 						<div>
 							<h5 class="m-0">Daril Dixon</h5>
-							<small>hunter</small>
 						</div>
 					</div>
+
 				</div>
+
 			</div>
 
-			<div class="section-right d-flex flex-column d-none d-sm-flex col-sm-7 col-md-8 p-0">
-				<!--header правой секции-->
-				<div class="d-flex align-items-center justify-content-between">
+			<div class="section-right d-flex flex-column d-none d-sm-flex col-sm-7 col-md-8 px-2">
+
+				<!--header правой секции (поиск + иконка User [по нажатию на ней можно сделать чтоб там были все настройки])-->
+				<div class="d-flex align-items-center justify-content-end" style="height: 64px;">
+					<div>
+						<input class="form-control" type="text" placeholder="Search here..." />
+					</div>
+					<div class="px-2">
+						<img src="./img/profile.png" class="rounded-circle border border-1 border-dark"
+							style="width: 3rem;" alt="...">
+					</div>
+
+				</div>
+
+				<!--секция с тем с кем ведешь беседы-->
+				<div class="d-flex align-items-center justify-content-between bg-dark bg-opacity-50 rounded">
 					<!--див показывает где человек с которым общаешься-->
-					<div class="d-flex d-flex align-items-center ps-2">
+					<div class="d-flex align-items-center ps-2">
 						<!--кнопка выход из секции чата и переход в список акаунтов-->
 						<button type="button"
-								class="btn btn-warning btn-sm rounded-circle d-sm-none btn-section-rigth-none">
+							class="btn btn-warning btn-sm rounded-circle d-sm-none btn-section-rigth-none">
 							<i class="bi bi-arrow-left"></i>
 						</button>
 						<!--див показывает где человек с которым общаешься-->
-						<div class="d-flex gap-3 my-2 ps-2 active-account">
+						<div class="d-flex gap-3 my-2 ps-2 active-account text-white">
 							<img src="./img/profile.png"
-								class="float-start rounded-circle border border-4 border-secondary"
-								style="width: 3rem;"
+								class="float-start rounded-circle border border-4 border-secondary" style="width: 3rem;"
 								alt="...">
 							<div>
 								<h4 class="m-0"></h4>
@@ -108,37 +100,32 @@
 					</div>
 					<!--кнопки аудио и видео вызовов-->
 					<div class="pe-2">
-						<button type="button" class="btn btn-primary btn-sm">
+						<button type="button" class="btn btn-dark btn-sm">
 							<i class="bi bi-telephone"></i>
 						</button>
-						<button type="button" class="btn btn-primary btn-sm">
+						<button type="button" class="btn btn-dark btn-sm">
 							<i class="bi bi-camera-video"></i>
 						</button>
 					</div>
 				</div>
 
 				<!--поле смс-->
-				<div class="overflow-auto flex-fill" style="height: 25vh;" id="messages"></div>
+				<div class="overflow-auto flex-fill p-2 my-2 bg-dark bg-opacity-50" style="height: 25vh;" id="messages">
+				</div>
 
 				<!--див отправки сообщений-->
-				<div class="mt-auto">
+				<div class="mt-auto bg-dark bg-opacity-50 rounded">
 					<form class="d-flex gap-1 my-2 px-2" action="" id="form">
 						<!-- прикрепить документ -->
 						<button class="btn btn-light">
 							<i class="bi bi-paperclip"></i>
 						</button>
 
-						<input	id="input"
-								class="form-control"
-								type="text"
-								placeholder="Type a message"
-								autocomplete="off" />
+						<input id="input" class="form-control" type="text" placeholder="Type a message"
+							autocomplete="off" />
 
 						<div class="dropup-center dropup">
-							<button type="button"
-									class="btn btn-light"
-									data-bs-toggle="dropdown"
-									aria-expanded="false">
+							<button type="button" class="btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="bi bi-emoji-smile"></i>
 							</button>
 							<!--наполнять из массива циклом и наверно даже при загрузке основной странице не будет их а после через время будет асинхронно подгружаться-->
@@ -158,7 +145,7 @@
 								<span class="emoji">&#129327;</span>
 							</div>
 						</div>
-						<button class="btn btn-primary">Send</button>
+						<button class="btn btn-dark">Send</button>
 					</form>
 				</div>
 
@@ -167,24 +154,6 @@
 		</div>
 	</div>
 
-	<!-- Модальное окно -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Add new contact</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-				</div>
-				<div class="modal-body">
-					Вот тут должно быть инпуты и кнопки для поиска контактов которые в БД, но не в друзьях еще
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button>
-					<button type="button" class="btn btn-primary">Save</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!--можно перенестив отдельный файл -->
 	<script>
@@ -206,15 +175,17 @@
 			if (accounts_sections !== null) {
 				accounts_sections.addEventListener('click', function (event) {
 					const account = event.target.closest('.account');
-					document.querySelector('.active-account').innerHTML = account.innerHTML;
-					if (last_clicked_account) {
-						last_clicked_account.classList.remove('active')
-					}
-					account.classList.add('active');
-					last_clicked_account = event.target.closest('.account');
-					if (window.innerWidth < 576) {
-						section_left.classList.add('d-none');
-						section_right.classList.remove('d-none');
+					if (account) {
+						document.querySelector('.active-account').innerHTML = account.innerHTML;
+						if (last_clicked_account) {
+							last_clicked_account.classList.remove('text-dark', 'bg-white');
+						}
+						account.classList.add('text-dark', 'bg-white');
+						last_clicked_account = event.target.closest('.account');
+						if (window.innerWidth < 576) {
+							section_left.classList.add('d-none');
+							section_right.classList.remove('d-none');
+						}
 					}
 				})
 			}
@@ -251,8 +222,8 @@
 
 	<script>
 		// Создаем функцию получения шаблона сообщения, которую можно вызывать в разных местах программы
-		function getMsgHtml(content, time, isYours=false){
-			const wrapClass = isYours ? "alert-info" : "alert-dark ms-auto";
+		function getMsgHtml(content, time, isYours = false) {
+			const wrapClass = isYours ? "alert-dark" : "alert-light ms-auto";
 			return `<div class="alert ${wrapClass}">
 						<div class="text-break lh-sm">${content}</div>
 						<div class="font-monospace text-end small">${time}</div>
@@ -313,7 +284,7 @@
 		// для получаения сообщеий от данного события
 		socket.on('chat_message', (msg) => {
 			// при получении сообщения от сервера добавляем сообщения к другим сообщениям в чате используя шаблон сообщения
-			messages.innerHTML += getMsgHtml(msg, "12:00");			
+			messages.innerHTML += getMsgHtml(msg, "12:00");
 			// скролим экран к последнему сообщению (пока что показатель 100000)
 			messages.scrollTo(0, 100000);
 		});
