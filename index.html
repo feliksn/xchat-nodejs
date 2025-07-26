@@ -170,6 +170,11 @@
 				section_left.classList.remove('d-none');
 			})
 
+			// функция чтобы окно выбора эмодзи не закрывалось после выбора одного эмодзи
+			document.querySelector('.emoji-window').addEventListener('click', function(event){
+				event.stopPropagation()
+			});
+
 			// click on account left section
 			let last_clicked_account = null;
 			if (accounts_sections !== null) {
