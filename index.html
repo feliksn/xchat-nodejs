@@ -66,36 +66,36 @@
 
 			<div class="section-right d-flex flex-column d-none d-sm-flex col-sm-7 col-md-8 px-2">
 
-				<!--header правой секции (поиск + иконка User [по нажатию на ней можно сделать чтоб там были все настройки])-->
+				<!--header правой секции-->
 				<div class="d-flex align-items-center justify-content-end" style="height: 64px;">
+					<!--кнопка выход из секции чата и переход в список акаунтов-->
+					<div class="px-1 me-auto">
+						<button type="button"
+							class="btn btn-light btn-sm rounded d-sm-none btn-section-rigth-none">
+							<i class="bi bi-arrow-left"></i>
+						</button>
+					</div>
+					<!--инпут поиск аккаунтов-->
 					<div>
 						<input class="form-control" type="text" placeholder="Search here..." />
 					</div>
-					<div class="px-2">
+					<!--Картинка User(пользователя)[по нажатию на ней можно сделать чтоб там были все настройки]-->
+					<div class="px-1">
 						<img src="./img/profile.png" class="rounded-circle border border-1 border-dark"
 							style="width: 3rem;" alt="...">
 					</div>
-
 				</div>
 
 				<!--секция с тем с кем ведешь беседы-->
 				<div class="d-flex align-items-center justify-content-between bg-dark bg-opacity-50 rounded">
 					<!--див показывает где человек с которым общаешься-->
-					<div class="d-flex align-items-center ps-2">
-						<!--кнопка выход из секции чата и переход в список акаунтов-->
-						<button type="button"
-							class="btn btn-warning btn-sm rounded-circle d-sm-none btn-section-rigth-none">
-							<i class="bi bi-arrow-left"></i>
-						</button>
-						<!--див показывает где человек с которым общаешься-->
-						<div class="d-flex gap-3 my-2 ps-2 active-account text-white">
-							<img src="./img/profile.png"
-								class="float-start rounded-circle border border-4 border-secondary" style="width: 3rem;"
-								alt="...">
-							<div>
-								<h4 class="m-0"></h4>
-								<small></small>
-							</div>
+					<div class="d-flex gap-3 my-2 ps-2 active-account text-white">
+						<img src="./img/profile.png"
+							class="float-start rounded-circle border border-4 border-secondary" style="width: 3rem;"
+							alt="...">
+						<div>
+							<h4 class="m-0"></h4>
+							<small></small>
 						</div>
 					</div>
 					<!--кнопки аудио и видео вызовов-->
