@@ -81,7 +81,7 @@ io.on('connection', (socket) => {
 		// далее создаем несколько простых констант для разделения даты и времени на год, месяц, день, часы, минуты, секунды
 		const year = date.getFullYear();
 		const month = date.getMonth();
-		const day = date.getDay();
+		const day = date.getDate();
 		const hh = date.getHours();
 		const mm = date.getMinutes();
 		const ss = date.getSeconds();
