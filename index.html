@@ -16,7 +16,7 @@
 	}
 
 	.account,
-	.emoji-window {
+	.window-emojis {
 		cursor: pointer;
 	}
 
@@ -70,8 +70,7 @@
 				<div class="d-flex align-items-center justify-content-end" style="height: 64px;">
 					<!--кнопка выход из секции чата и переход в список акаунтов-->
 					<div class="px-1 me-auto">
-						<button type="button"
-							class="btn btn-light btn-sm rounded d-sm-none btn-section-rigth-none">
+						<button type="button" class="btn btn-light btn-sm rounded d-sm-none btn-section-rigth-none">
 							<i class="bi bi-arrow-left"></i>
 						</button>
 					</div>
@@ -90,9 +89,8 @@
 				<div class="d-flex align-items-center justify-content-between bg-dark bg-opacity-50 rounded">
 					<!--див показывает где человек с которым общаешься-->
 					<div class="d-flex gap-3 my-2 ps-2 active-account text-white">
-						<img src="./img/profile.png"
-							class="float-start rounded-circle border border-4 border-secondary" style="width: 3rem;"
-							alt="...">
+						<img src="./img/profile.png" class="float-start rounded-circle border border-4 border-secondary"
+							style="width: 3rem;" alt="...">
 						<div>
 							<h4 class="m-0"></h4>
 							<small></small>
@@ -125,25 +123,12 @@
 							autocomplete="off" />
 
 						<div class="dropup-center dropup">
-							<button type="button" class="btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+							<button type="button" class="btn btn-light btn-emojis" data-bs-toggle="dropdown"
+								aria-expanded="false">
 								<i class="bi bi-emoji-smile"></i>
 							</button>
 							<!--наполнять из массива циклом и наверно даже при загрузке основной странице не будет их а после через время будет асинхронно подгружаться-->
-							<div class="dropdown-menu emoji-window">
-								<span class="emoji">&#128512;</span>
-								<span class="emoji">&#128515;</span>
-								<span class="emoji">&#128516;</span>
-								<span class="emoji">&#128513;</span>
-								<span class="emoji">&#128517;</span>
-								<span class="emoji">&#128514;</span>
-								<span class="emoji">&#128578;</span>
-								<span class="emoji">&#128579;</span>
-								<span class="emoji">&#129314;</span>
-								<span class="emoji">&#129326;</span>
-								<span class="emoji">&#129298;</span>
-								<span class="emoji">&#129398;</span>
-								<span class="emoji">&#129327;</span>
-							</div>
+							<div class="dropdown-menu window-emojis"></div>
 						</div>
 						<button class="btn btn-dark">Send</button>
 					</form>
@@ -154,26 +139,20 @@
 		</div>
 	</div>
 
-
 	<!--можно перенестив отдельный файл -->
 	<script>
 
-		window.addEventListener('load', function () {
+		window.addEventListener('load', function() {
 			const section_left = document.querySelector('.section-left');
 			const section_right = document.querySelector('.section-right');
 			const accounts_sections = document.querySelector('.accounts');
 			const BTN_SECTION_RIGHT_NONE = document.querySelector('.btn-section-rigth-none');
 
 			// кнопка скрывающая правую секцию и показывающая левую (появляется кнопка только после того когда экран < 576)
-			BTN_SECTION_RIGHT_NONE.addEventListener('click', function () {
+			BTN_SECTION_RIGHT_NONE.addEventListener('click', function() {
 				section_right.classList.add('d-none');
 				section_left.classList.remove('d-none');
 			})
-
-			// функция чтобы окно выбора эмодзи не закрывалось после выбора одного эмодзи
-			document.querySelector('.emoji-window').addEventListener('click', function(event){
-				event.stopPropagation()
-			});
 
 			// click on account left section
 			let last_clicked_account = null;
@@ -195,22 +174,35 @@
 				})
 			}
 
-			// функция в эмодзи выполнена через цикл
-			document.querySelectorAll('.emoji').forEach(span => {
-				span.addEventListener('click', function () {
-					const input = document.getElementById('input');
-					const textToInsert = this.textContent;
-					const cursorPos = input.selectionStart; // Позиция курсора
-					const currentValue = input.value;
-					// Вставляем текст на место курсора
-					input.value = currentValue.slice(0, cursorPos) + textToInsert + currentValue.slice(cursorPos);
-					// Перемещаем курсор после вставленного текста
-					const newCursorPos = cursorPos + textToInsert.length;
-					input.setSelectionRange(newCursorPos, newCursorPos);
-					// Фокусируем инпут
-					input.focus();
+			// по нажатию на кнопку подгружаются с сервера эмодзи 
+			document.querySelector('.btn-emojis').addEventListener('click', async function () {
+				const res = await fetch('./data/emojis.json');
+				const emojis = await res.json();
+				document.querySelector('.window-emojis').innerHTML = emojis.map(emoji => `<span class="emoji">${emoji}</span>`).join('');
+				// функция в эмодзи выполнена через цикл
+				document.querySelectorAll('.emoji').forEach(span => {
+					span.addEventListener('click', function () {
+						const input = document.getElementById('input');
+						const textToInsert = this.textContent;
+						// Позиция курсора
+						const cursorPos = input.selectionStart;
+						const currentValue = input.value;
+						// Вставляем текст на место курсора
+						input.value = currentValue.slice(0, cursorPos) + textToInsert + currentValue.slice(cursorPos);
+						// Перемещаем курсор после вставленного текста
+						const newCursorPos = cursorPos + textToInsert.length;
+						input.setSelectionRange(newCursorPos, newCursorPos);
+						// Фокусируем инпут
+						input.focus();
+					})
 				})
 			});
+
+			// функция чтобы окно выбора эмодзи не закрывалось после выбора одного эмодзи
+			document.querySelector('.window-emojis').addEventListener('click', (event) => {
+				event.stopPropagation();
+			});
+
 
 		})
 	</script>
