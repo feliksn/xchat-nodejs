@@ -21,12 +21,7 @@
 		radial-gradient(circle at 0 100%, #1b1b1e, #373f51, #58a4b0, #a9bcd0, #d8dbe2);
 	}
 
-	.accounts::-webkit-scrollbar {
-		width: 0;
-	}
-
-	.account,
-	.window-emojis {
+	.account {
 		cursor: pointer;
 	}
 
@@ -35,101 +30,94 @@
 		min-width: 25%;
 		max-width: 75%;
 	}
+
+	.contact-initials{
+		font-size: 1.5rem;
+		width: 2em;
+		height: 2em;
+		line-height: 2em;
+		text-align: center;
+	}
 </style>
 
-<body class="bg-dark bg-opacity-75">
+<body>
 
-	<div class="container">
-		<div class="row vh-100">
+	<div class="container text-white">
+		
+		<div class="row gx-1">
 
-			<!-- left block -->
-			<div class="section-left d-flex flex-column d-sm-flex col-sm-5 col-md-4 px-2">
-				<!--logo-->
-				<div class="d-flex align-items-center justify-content-center" style="height: 64px;">
-					<div class="text-white">
-						<i class="bi bi-twitter-x">chat</i>
-					</div>
+			<!-- section left -->
+			<div class="section-left col-sm-5 col-md-4 py-1">
+				
+				<!-- logo, contact input -->
+				<div class="d-flex">
+					<i class="bi fs-4 bi-twitter-x px-2"></i>
+					<input id="new-contact" class="form-control" type="text" placeholder="Search a new contact..." />
 				</div>
-				<!--contacts -->
-				<div class="overflow-auto flex-fill accounts gap-3 text-white" style="height: 25vh;">
+				
+				<!--contact list -->
+				<div class="contact-list">
+					
 					<!-- contact item -->
-					<div class="d-flex gap-3 bg-dark bg-opacity-50 p-2 my-1 rounded account">
-						<img src="./img/profile.png" class="float-start rounded-circle border border-4 border-white"
-							style="width: 3rem; height: auto;" alt="...">
-						<div>
-							<h5 class="m-0">Morgan</h5>
-						</div>
+					<div class="contact-item d-flex align-items-center bg-dark p-2 mt-1 rounded border-start border-success border-5">
+						<span class="contact-initials me-3 bg-light rounded-circle text-dark">MF</span>
+						<span class="contact-name">Morgan Freeman</span>
 					</div>
 					<!-- contact item -->
-					<div class="d-flex gap-3 bg-dark bg-opacity-50 p-2 my-1 rounded account">
-						<img src="./img/profile.png" class="float-start rounded-circle border border-4 border-dark"
-							style="width: 3rem;  height: 3rem;" alt="...">
-						<div>
-							<h5 class="m-0">Daril Dixon</h5>
-						</div>
+					<div class="contact-item d-flex align-items-center bg-dark bg-opacity-50 p-2 mt-1 rounded border-start border-secondary border-5">
+						<span class="contact-initials me-3 bg-light rounded-circle text-dark">D</span>
+						<span class="contact-name">Dixon</span>
 					</div>
-				</div>
-			</div>
+				
+				</div> <!-- contact-list -->
+			
+			</div> <!-- section-left -->
+
 
 			<!-- right block -->
-			<div class="section-right d-flex flex-column d-none d-sm-flex col-sm-7 col-md-8 px-2">
-				<!--header правой секции-->
-				<div class="d-flex align-items-center justify-content-end" style="height: 64px;">
-					<!--кнопка выход из секции чата и переход в список акаунтов-->
-					<div class="px-1 me-auto">
-						<button type="button" class="btn btn-light btn-sm rounded d-sm-none btn-section-rigth-none">
-							<i class="bi bi-arrow-left"></i>
-						</button>
-					</div>
-					<!--инпут поиск аккаунтов-->
-					<div>
-						<input class="form-control" type="text" placeholder="Search here..." />
-					</div>
-					<!--Картинка User(пользователя)[по нажатию на ней можно сделать чтоб там были все настройки]-->
-					<div class="px-1">
-						<img src="./img/profile.png" class="rounded-circle border border-1 border-dark"
-							style="width: 3rem;" alt="...">
-					</div>
-				</div>
-
+			<div class="section-right d-flex flex-column col-sm-7 col-md-8 vh-100 py-1">
+				
 				<!--секция с тем с кем ведешь беседы-->
-				<div class="d-flex align-items-center justify-content-between bg-dark bg-opacity-50 rounded">
+				<div class="d-flex align-items-center justify-content-between bg-dark rounded-top p-2 border-start border-success border-5">
+					
 					<!--див показывает где человек с которым общаешься-->
-					<div class="d-flex gap-3 my-2 ps-2 active-account text-white">
-						<img src="./img/profile.png" class="float-start rounded-circle border border-4 border-secondary"
-							style="width: 3rem;" alt="...">
-						<div>
-							<h4 class="m-0"></h4>
-							<small></small>
-						</div>
+					<div class="contact-item d-flex align-items-center">
+						<span class="contact-initials me-3 bg-light rounded-circle text-dark">MF</span>
+						<span class="contact-name">Morgan Freeman</span>
 					</div>
+					
 					<!--кнопки аудио и видео вызовов-->
-					<div class="pe-2">
-						<button type="button" class="btn btn-dark btn-sm">
+					<div>
+						<button type="button" class="btn btn-secondary btn-sm">
 							<i class="bi bi-telephone"></i>
 						</button>
-						<button type="button" class="btn btn-dark btn-sm">
+						<button type="button" class="btn btn-secondary btn-sm">
 							<i class="bi bi-camera-video"></i>
 						</button>
 					</div>
 				</div>
 
-				<!--поле смс-->
-				<div class="overflow-auto flex-fill p-2 my-2 bg-dark bg-opacity-50" style="height: 25vh;" id="messages">
+				
+				<!-- messages -->
+				<div class="messages overflow-auto flex-fill p-2 bg-dark bg-opacity-50 my-1" id="messages">
 				</div>
 
+				
 				<!--див отправки сообщений-->
-				<div class="mt-auto bg-dark bg-opacity-50 rounded">
-					<form class="d-flex gap-1 my-2 px-2" action="" id="form">
+				<div>
+					<form class="d-flex rounded-bottom overflow-auto" action="" id="form">
 						<!-- прикрепить документ -->
-						<button class="btn btn-light">
+						<button class="btn btn-light rounded-0">
 							<i class="bi bi-paperclip"></i>
 						</button>
-
-						<input id="input" class="form-control" type="text" placeholder="Type a message"
+	
+						<input id="input"
+							class="form-control rounded-0"
+							type="text"
+							placeholder="Type a message"
 							autocomplete="off" />
-
-						<button class="btn btn-dark">Send</button>
+						
+						<button class="btn btn-dark rounded-0">Send</button>
 					</form>
 				</div>
 
