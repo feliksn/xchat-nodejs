@@ -11,6 +11,16 @@
 		integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
 </head>
 <style>
+	body{
+		background-color: #d8dbe2;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		background-image: 
+		radial-gradient(circle at 0 100%, #1b1b1e, #373f51, #58a4b0, #a9bcd0, #d8dbe2);
+	}
+
 	.accounts::-webkit-scrollbar {
 		width: 0;
 	}
@@ -32,18 +42,17 @@
 	<div class="container">
 		<div class="row vh-100">
 
+			<!-- left block -->
 			<div class="section-left d-flex flex-column d-sm-flex col-sm-5 col-md-4 px-2">
-
-				<!--header левой секции (название чата)-->
+				<!--logo-->
 				<div class="d-flex align-items-center justify-content-center" style="height: 64px;">
 					<div class="text-white">
 						<i class="bi bi-twitter-x">chat</i>
 					</div>
 				</div>
-
-				<!--div где находятся аккаунты -->
+				<!--contacts -->
 				<div class="overflow-auto flex-fill accounts gap-3 text-white" style="height: 25vh;">
-
+					<!-- contact item -->
 					<div class="d-flex gap-3 bg-dark bg-opacity-50 p-2 my-1 rounded account">
 						<img src="./img/profile.png" class="float-start rounded-circle border border-4 border-white"
 							style="width: 3rem; height: auto;" alt="...">
@@ -51,7 +60,7 @@
 							<h5 class="m-0">Morgan</h5>
 						</div>
 					</div>
-
+					<!-- contact item -->
 					<div class="d-flex gap-3 bg-dark bg-opacity-50 p-2 my-1 rounded account">
 						<img src="./img/profile.png" class="float-start rounded-circle border border-4 border-dark"
 							style="width: 3rem;  height: 3rem;" alt="...">
@@ -59,13 +68,11 @@
 							<h5 class="m-0">Daril Dixon</h5>
 						</div>
 					</div>
-
 				</div>
-
 			</div>
 
+			<!-- right block -->
 			<div class="section-right d-flex flex-column d-none d-sm-flex col-sm-7 col-md-8 px-2">
-
 				<!--header правой секции-->
 				<div class="d-flex align-items-center justify-content-end" style="height: 64px;">
 					<!--кнопка выход из секции чата и переход в список акаунтов-->
@@ -122,14 +129,6 @@
 						<input id="input" class="form-control" type="text" placeholder="Type a message"
 							autocomplete="off" />
 
-						<div class="dropup-center dropup">
-							<button type="button" class="btn btn-light btn-emojis" data-bs-toggle="dropdown"
-								aria-expanded="false">
-								<i class="bi bi-emoji-smile"></i>
-							</button>
-							<!--наполнять из массива циклом и наверно даже при загрузке основной странице не будет их а после через время будет асинхронно подгружаться-->
-							<div class="dropdown-menu window-emojis"></div>
-						</div>
 						<button class="btn btn-dark">Send</button>
 					</form>
 				</div>
@@ -173,36 +172,6 @@
 					}
 				})
 			}
-
-			// по нажатию на кнопку подгружаются с сервера эмодзи 
-			document.querySelector('.btn-emojis').addEventListener('click', async function () {
-				const res = await fetch('./data/emojis.json');
-				const emojis = await res.json();
-				document.querySelector('.window-emojis').innerHTML = emojis.map(emoji => `<span class="emoji">${emoji}</span>`).join('');
-				// функция в эмодзи выполнена через цикл
-				document.querySelectorAll('.emoji').forEach(span => {
-					span.addEventListener('click', function () {
-						const input = document.getElementById('input');
-						const textToInsert = this.textContent;
-						// Позиция курсора
-						const cursorPos = input.selectionStart;
-						const currentValue = input.value;
-						// Вставляем текст на место курсора
-						input.value = currentValue.slice(0, cursorPos) + textToInsert + currentValue.slice(cursorPos);
-						// Перемещаем курсор после вставленного текста
-						const newCursorPos = cursorPos + textToInsert.length;
-						input.setSelectionRange(newCursorPos, newCursorPos);
-						// Фокусируем инпут
-						input.focus();
-					})
-				})
-			});
-
-			// функция чтобы окно выбора эмодзи не закрывалось после выбора одного эмодзи
-			document.querySelector('.window-emojis').addEventListener('click', function (event) {
-				event.stopPropagation();
-			});
-
 
 		})
 	</script>

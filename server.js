@@ -47,12 +47,11 @@ const io = new Server(
 );
 
 app.use('/img', express.static(__dirname + '/img'));
-app.use('/data', express.static(__dirname + '/data'));
 
 // В этом месте express.js вступает в работу. Вроде что можно обойтись и без него на этом этапе. Но пока что оставим.
 // Работает и хорошо. Не трогаем то, что работает:))) В будущем решим можно ли без него. 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, 'index.html'));
+	res.sendFile(path.join(__dirname, 'client.html'));
 });
 
 // массив подключений, чтобы отражалось кто онлайн кто оффлайн кто вышел кто зашел
