@@ -11,42 +11,11 @@
 		integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
 	<link rel="stylesheet" href="./style.css">
 </head>
-<style>
-	body{
-		background-color: #d8dbe2;
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-size: cover;
-		background-image: 
-		radial-gradient(circle at 0 100%, #1b1b1e, #373f51, #58a4b0, #a9bcd0, #d8dbe2);
-	}
-
-	.account {
-		cursor: pointer;
-	}
-
-	.alert {
-		width: fit-content;
-		min-width: 25%;
-		max-width: 75%;
-	}
-
-	.contact-initials{
-		font-size: 1.5rem;
-		width: 2em;
-		height: 2em;
-		line-height: 2em;
-		text-align: center;
-	}
-</style>
 
 <body>
-
 	<div class="container text-white">
-		
 		<div class="row gx-1">
-
+			
 			<!-- section left -->
 			<div class="section-left col-sm-5 col-md-4 py-1">
 				
@@ -58,7 +27,6 @@
 				
 				<!--contact list -->
 				<div class="contact-list">
-					
 					<!-- contact item -->
 					<div class="contact-item d-flex align-items-center bg-dark p-2 mt-1 rounded border-start border-success border-5">
 						<span class="contact-initials me-3 bg-light rounded-circle text-dark">MF</span>
@@ -69,24 +37,19 @@
 						<span class="contact-initials me-3 bg-light rounded-circle text-dark">D</span>
 						<span class="contact-name">Dixon</span>
 					</div>
-				
-				</div> <!-- contact-list -->
-			
-			</div> <!-- section-left -->
+				</div> <!-- .contact-list -->
+			</div> <!-- .section-left -->
 
-
-			<!-- right block -->
+			<!-- section right -->
 			<div class="section-right d-flex flex-column col-sm-7 col-md-8 vh-100 py-1">
 				
-				<!--секция с тем с кем ведешь беседы-->
-				<div class="d-flex align-items-center justify-content-between bg-dark rounded-top p-2 border-start border-success border-5">
-					
+				<!-- section right header -->
+				<div class="section-right-header d-flex align-items-center justify-content-between bg-dark rounded-top p-2 border-start border-success border-5">
 					<!--див показывает где человек с которым общаешься-->
 					<div class="contact-item d-flex align-items-center">
 						<span class="contact-initials me-3 bg-light rounded-circle text-dark">MF</span>
 						<span class="contact-name">Morgan Freeman</span>
 					</div>
-					
 					<!--кнопки аудио и видео вызовов-->
 					<div>
 						<button type="button" class="btn btn-secondary btn-sm">
@@ -97,78 +60,36 @@
 						</button>
 					</div>
 				</div>
-
 				
-				<!-- messages -->
-				<div class="messages overflow-auto flex-fill p-2 bg-dark bg-opacity-50 my-1" id="messages">
+				<!-- section right messages -->
+				<div class="section-right-messages overflow-auto flex-fill p-2 bg-dark bg-opacity-50 my-1" id="messages">
 				</div>
-
 				
-				<!--див отправки сообщений-->
-				<div>
-					<form class="d-flex rounded-bottom overflow-auto" action="" id="form">
-						<!-- прикрепить документ -->
+				<!--section right footer-->
+				<div class="section-right-footer">
+					<form class="d-flex rounded-bottom overflow-auto" action="" id="form-message">
+						<!-- add an attachment -->
 						<button class="btn btn-light rounded-0">
 							<i class="bi bi-paperclip"></i>
 						</button>
-	
-						<input id="input"
+						<!-- field message -->
+						<input id="input-message"
 							class="form-control rounded-0"
 							type="text"
 							placeholder="Type a message"
 							autocomplete="off" />
-						
+						<!-- send message button -->
 						<button class="btn btn-dark rounded-0">Send</button>
 					</form>
-				</div>
-
-			</div>
-
-		</div>
-	</div>
-
-	<!--можно перенестив отдельный файл -->
-	<script>
-
-		window.addEventListener('load', function() {
-			const section_left = document.querySelector('.section-left');
-			const section_right = document.querySelector('.section-right');
-			const accounts_sections = document.querySelector('.accounts');
-			const BTN_SECTION_RIGHT_NONE = document.querySelector('.btn-section-rigth-none');
-
-			// кнопка скрывающая правую секцию и показывающая левую (появляется кнопка только после того когда экран < 576)
-			BTN_SECTION_RIGHT_NONE.addEventListener('click', function() {
-				section_right.classList.add('d-none');
-				section_left.classList.remove('d-none');
-			})
-
-			// click on account left section
-			let last_clicked_account = null;
-			if (accounts_sections !== null) {
-				accounts_sections.addEventListener('click', function (event) {
-					const account = event.target.closest('.account');
-					if (account) {
-						document.querySelector('.active-account').innerHTML = account.innerHTML;
-						if (last_clicked_account) {
-							last_clicked_account.classList.remove('text-dark', 'bg-white');
-						}
-						account.classList.add('text-dark', 'bg-white');
-						last_clicked_account = event.target.closest('.account');
-						if (window.innerWidth < 576) {
-							section_left.classList.add('d-none');
-							section_right.classList.remove('d-none');
-						}
-					}
-				})
-			}
-
-		})
-	</script>
+				</div> <!-- .section-right-footer -->
+			</div> <!-- .section-right -->
+		</div> <!-- .row -->
+	</div> <!-- .container -->
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
 		crossorigin="anonymous"></script>
-
+		
 	<!-- Сущевтует три разных варианта подлкючения библиотеки socket на стороне клиента для файла index.html -->
 	<!-- 1 - путь к библиотеке в инете (пока что используем этот вариант. Лучше использовать 2 или 3, но пока еще не нашел как сделать, чтобы работало для локального и удаленного сервера одинаково) -->
 	<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
