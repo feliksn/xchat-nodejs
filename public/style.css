@@ -1,0 +1,27 @@
+body {
+	background-color: #d8dbe2;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-image:
+		radial-gradient(circle at 0 100%, #1b1b1e, #373f51, #58a4b0, #a9bcd0, #d8dbe2);
+}
+
+.contact-item {
+	cursor: pointer;
+}
+
+.alert {
+	width: fit-content;
+	min-width: 25%;
+	max-width: 75%;
+}
+
+.contact-initials {
+	font-size: 1.5rem;
+	width: 2em;
+	height: 2em;
+	line-height: 2em;
+	text-align: center;
+}
