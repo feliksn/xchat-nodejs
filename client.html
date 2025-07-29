@@ -9,6 +9,7 @@
 		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
 		integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
+	<link rel="stylesheet" href="./style.css">
 </head>
 <style>
 	body{
@@ -173,83 +174,7 @@
 	<script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
 	<!-- <script src="/socket.io/socket.io.js"></script> -->
 	<!-- <script src="node_modules/socket.io/client-dist/socket.io.js"></script> -->
-
-	<script>
-		// Создаем функцию получения шаблона сообщения, которую можно вызывать в разных местах программы
-		function getMsgHtml(content, time, isYours = false) {
-			const wrapClass = isYours ? "alert-dark" : "alert-light ms-auto";
-			return `<div class="alert ${wrapClass}">
-						<div class="text-break lh-sm">${content}</div>
-						<div class="font-monospace text-end small">${time}</div>
-					</div>`
-		}
-
-		// Создаем сокет чата на стороне клиента для файла index.html
-		const socket = io(
-			// 1 параметр - оригинальный адрес сайта на котором запускается чат
-			window.location.origin,
-
-			// 2 параметр - объект из разных свойств. В нашем случае передаем свойство "path" которое указывает дирекотрию/папку сайта в которой запускается файл index.html
-			// !!! - к дериктории/папке добавляем строку "socket.io" (отсутствие этой строки не позволяло запускать чат на удаленном сервере)
-			{
-				path: window.location.pathname + 'socket.io'
-			}
-		);
-
-		// Создаем константы для работы с формой, полем ввода сообщения, списком сообщений
-		const form = document.getElementById('form');
-		const input = document.getElementById('input');
-		const messages = document.getElementById('messages');
-
-		// !!! Для временного решения проблемы с дублированием сообщений из базы данных во вермя перезагрузки гл.файла создаем переменную areDbMessage  перед подключением к сокету. Есть другое решение данной проблемы - более правильное, но более сложное в реализации. Пока что такое решение - быстрое и простое)))
-		let areDbMessages = false;
-		// Со стороны клиента подключаемся к событию "db_messages" для получения всех сообщений из БД
-		socket.on('db_messages', (dbMessages) => {
-			// !!! Если переменна areDbMessages == false, то полученные сообщеия из БД записанные в dbMessages показываем на странице
-			if (areDbMessages === false) {
-				// Так как получаем массив сообщений, то нужно пропустить его через цикл, чтобы получить каждое сообщение в отдельности
-				dbMessages.forEach(dbMsg => {
-					// Используем шаблон сообщения и добалвяем его к другим сообщениям в чате
-					messages.innerHTML += getMsgHtml(dbMsg.content, "12:00");
-					// при появлении чата сразу скроллим к последнему сообщению
-				});
-				messages.scrollTo(0, 100000);
-			}
-			// !!! После того как показали на странице сообщения из БД, изменяем переменную areDbMessages = true
-			// В случае перезапуска гл.файла index.js на сервере файл index.html остается без изменений и переменная areDbMessages продолжает быть true. А значит при перезапуске гл.файлa index.js, который отправляет сообщения из БД в index.html условие if не исполнится, т.к. areDbMessages == true и значит не показываем в index.html полученные сообщения из БД. Хотя код из index.js отправляет все сообщения повторно для index.html и в dbMessages каждый раз присылаются сообщения при каждом перезапуске index.js. Тут просто блокируем повтороное отбражение сообщений из БД которые уже показаны на странце. Это только для режима разработки. Позже надо будет разрешить данную проблему иначе, более профессионально, не присылая со строноы сервера сообщений, котороые не нужны для клиента)))
-			areDbMessages = true;
-		})
-
-		// Подключаемся к событию отправки форм
-		form.addEventListener('submit', (e) => {
-			// отключаем событие по умолчанию
-			e.preventDefault();
-			// проверяем поле формы
-			if (input.value) {
-				// если поле формы не пустое
-				// отправляем сообщение для события чата под именем "chat_message"(имя может быть любое)
-				socket.emit('chat_message', input.value);
-				// после отправки сообщения чистим поле для нового сообщения
-				input.value = '';
-			}
-		});
-
-		// подключаемся к событию чата chat_message
-		// для получаения сообщеий от данного события
-		socket.on('chat_message', (msg) => {
-			// при получении сообщения от сервера добавляем сообщения к другим сообщениям в чате используя шаблон сообщения
-			messages.innerHTML += getMsgHtml(msg, "12:00");
-			// скролим экран к последнему сообщению (пока что показатель 100000)
-			messages.scrollTo(0, 100000);
-		});
-
-		socket.on("connect_error", (err) => {
-			console.log(err.message);
-			console.log(err.description);
-			console.log(err.context);
-		});
-
-	</script>
+	<script src="./scripts.js"></script>
 </body>
 
 </html>
